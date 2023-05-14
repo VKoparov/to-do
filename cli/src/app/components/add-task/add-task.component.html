@@ -1,0 +1,14 @@
+<form *ngIf="showAddTask" class="add-form" (ngSubmit)="onSubmit()">
+  <div class="form-control">
+    <input placeholder="Header" type="text" id="field1" name="field1" [(ngModel)]="header" required>
+  </div>
+  <div class="form-control">
+    <input placeholder="Text" type="text" id="field2" name="field2" [(ngModel)]="text" required>
+  </div>
+  <div class="form-control">
+    <select id="dropdown" name="dropdown" [(ngModel)]="status" required>
+      <option *ngFor="let option of options" [value]="option">{{ option }}</option>
+    </select>
+  </div>
+  <input type="submit" value="Save Task" class="btn btn-block"/>
+</form>

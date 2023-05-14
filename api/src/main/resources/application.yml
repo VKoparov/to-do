@@ -1,0 +1,8 @@
+spring:
+  data:
+    mongodb:
+      repositories:
+        type: auto
+      database: to-do-db
+      port: 27017
+      host: mongodb

@@ -1,0 +1,15 @@
+<div
+  [ngClass]="{ done: task.status === Status.DONE }"
+  class="task"
+  (click)="onUpdate(task)"
+>
+  <h3>
+    {{ task.header }}
+    <fa-icon
+      (click)="onDelete(task)"
+      [ngStyle]="{ color: 'red' }"
+      [icon]="faTimes"
+    ></fa-icon>
+  </h3>
+  <p>{{ task.text }}</p>
+</div>

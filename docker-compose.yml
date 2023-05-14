@@ -1,0 +1,43 @@
+version: '3.7'
+services:
+  #************Mongo DB***************
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: to-do-db
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    networks:
+      - local-net
+
+  #************Backend***************
+  api:
+    container_name: to-do-api
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongodb
+    networks:
+      - local-net
+
+  #************Frontend***************
+  cli:
+    container_name: to-do-cli
+    build:
+      context: ./cli
+      dockerfile: Dockerfile
+    ports:
+      - 4200:4200
+    networks:
+      - local-net
+
+networks:
+  local-net:
+    driver: bridge
